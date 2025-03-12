@@ -112,6 +112,40 @@
             }
             return result.ToArray();
         }
+        public void Print()
+        {
+            Console.WriteLine();
+            Console.Write("[");
+            for (int i = 0; i < Length; i++)
+            {
+                Console.Write(_data[i]);
+                if (i < Length - 1)
+                {
+                    Console.Write(", ");
+                }
+            }
+            Console.Write($"]");
+            Console.WriteLine();
+        }
+        public void Clear()
+        {
+            _data = new int[Capacity];
+            Length = 0;
+        }
+        public void IncreaseCapacity(int capacity)
+        {
+            if(capacity <= Capacity)
+            {
+                throw new InvalidOperationException("The new capacity. Cannot be less than existing capacity");
+            }
+            Capacity = capacity;
+            var newData = new int[Capacity];
+            for(int i = 0; i < Length; i++)
+            {
+                newData[i] = _data[i];
+            }
+            _data = newData;
+        }
         private void ValidateArrayLength()
         {
             if (Length == 0)
